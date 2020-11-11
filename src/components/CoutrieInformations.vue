@@ -204,6 +204,7 @@ img {
 .desc {
   display: flex;
   flex-direction: column;
+  font-size: 14px;
   > div {
     display: flex;
     flex-direction: row;
@@ -276,7 +277,11 @@ h3 {
     }
   }
 }
-
+@media only screen and (max-width: 900px) {
+  .desc {
+    font-size: 11px;
+  }
+}
 @media only screen and (max-width: 600px) {
   button {
     width: 40px;
@@ -306,9 +311,8 @@ h3 {
   }
   ul {
     > li {
-      padding: 4px;
+      padding: 2px;
     }
-    font-size: 9px;
   }
   h3 {
     margin: 4px;
