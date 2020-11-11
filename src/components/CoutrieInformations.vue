@@ -194,7 +194,7 @@ ul {
   }
 }
 ul li {
-  padding: 10px;
+  padding: 2px;
 }
 img {
   width: 700px;
@@ -237,6 +237,7 @@ h3 {
     padding: 0px 50px;
     > img {
       width: 30%;
+      min-width: 250px;
     }
   }
 }
@@ -277,9 +278,9 @@ h3 {
     }
   }
 }
-@media only screen and (max-width: 900px) {
-  .desc {
-    font-size: 11px;
+@media only screen and (max-width: 1000px) {
+  .desc *{
+    font-size: 10px;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -289,6 +290,11 @@ h3 {
     margin-bottom: 5px;
     font-size: 9px;
     align-items: center;
+    > img {
+    height: 10px;
+    width: 10px;
+    //margin-right: 5px;
+  }
   }
   .bordersContainer {
     font-size: 9px;
