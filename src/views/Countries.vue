@@ -20,7 +20,13 @@
           <Selecte @selectevalue="updateRegionFiltered" />
         </div>
       </div>
-      <div class="card__handler">
+
+      <div class="card__handler" v-if="!loading">
+        <template v-for="n in 8">
+          <CardLoader :key="n" />
+        </template>
+      </div>
+      <div v-else class="card__handler">
         <template v-for="(countrieInfo, i) in this.filterCardHandler">
           <Card
             :info="countrieInfo"
@@ -47,6 +53,7 @@ import Autocomplete from "@trevoreyre/autocomplete-vue";
 import "@trevoreyre/autocomplete-vue/dist/style.css";
 import Selecte from "../components/SelecteComponent";
 import CoutrieInformations from "@/components/CoutrieInformations";
+import CardLoader from "@/components/skeletonLoader/CardLoader";
 import axios from "axios";
 
 export default {
@@ -56,6 +63,7 @@ export default {
     Autocomplete,
     Selecte,
     CoutrieInformations,
+    CardLoader,
   },
   mounted() {
     this.loading = false;
@@ -68,8 +76,10 @@ export default {
         });
       })
       .finally(() => {
-        this.loading = true;
-        this.loadCard = true;
+        setTimeout(() => {
+          this.loading = true;
+          this.loadCard = true;
+        }, 1000);
       });
   },
   data() {

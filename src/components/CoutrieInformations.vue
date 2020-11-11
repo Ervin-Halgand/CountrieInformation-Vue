@@ -14,8 +14,8 @@
     <button
       @click="close"
       :class="{
-        darkModeElements: $store.getters.theme,
-        lightModeElements: !$store.getters.theme,
+        darkModeBorder: $store.getters.theme,
+        lightModeBorder: !$store.getters.theme,
       }"
     >
       <img v-if="!$store.getters.theme" src="../assets/arrow-left-dark.svg" />
@@ -164,19 +164,16 @@ export default {
 
 button {
   width: 80px;
-  padding: 15px 0px;
+  padding: 10px 0px;
   box-shadow: $boxShadow;
-  transition: filter 0.5s ease-in-out, background-color 1s ease-in-out;
   display: flex;
   margin-right: auto;
   justify-content: center;
   margin: auto;
   border-radius: 5px;
-  border: none;
   outline: none;
   &:hover {
     cursor: pointer;
-    filter: invert(20%);
   }
   > img {
     height: 17px;
@@ -293,7 +290,6 @@ h3 {
     > img {
     height: 10px;
     width: 10px;
-    //margin-right: 5px;
   }
   }
   .bordersContainer {

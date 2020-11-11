@@ -7,17 +7,17 @@
     }"
   >
     <h1>{{ title }}</h1>
-    <button @click="$store.dispatch('toggleTheme')">
+    <button
+      @click="$store.dispatch('toggleTheme')"
+      :class="{
+        darkModeBorder: $store.getters.theme,
+        lightModeBorder: !$store.getters.theme,
+      }"
+    >
       <img v-if="!$store.getters.theme" src="../assets/moon-outline.svg" />
       <img v-else src="../assets/moon.svg" />
       Dark Mode
     </button>
-    <!-- <div
-      :class="{
-        endDarkMode: $store.getters.theme,
-        endLightMode: !$store.getters.theme,
-      }"
-    ></div> -->
   </header>
 </template>
 
@@ -31,6 +31,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../scss/variable.scss";
+
 .header {
   position: -webkit-sticky; /* Safari */
   position: sticky;
@@ -46,12 +48,25 @@ export default {
   }
 }
 
+.darkModeBorder {
+  border: 1px solid $white;
+  &:hover {
+    filter: drop-shadow(0px 0px 10px $white);
+  }
+}
+
+.lightModeBorder {
+  border: 1px solid $darkGray;
+  &:hover {
+    filter: drop-shadow(0px 0px 10px black);
+  }
+}
+
 .header button {
   padding: 10px 10px;
   display: flex;
   align-items: center;
   margin-left: auto;
-  border: none;
   border-radius: 20px;
   outline: none;
   font-weight: 600;
