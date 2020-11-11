@@ -8,23 +8,28 @@
       lightModeBackground: !$store.getters.theme,
     }"
   >
-    <h3>
-      {{ countrie.name ? countrie.name : "none" }}
-    </h3>
-    <button
-      @click="close"
-      :class="{
-        darkModeBorder: $store.getters.theme,
-        lightModeBorder: !$store.getters.theme,
-      }"
+    <div
+      class="action"
+      style="flex-direction: row; justify-content: flex-start;"
     >
-      <img v-if="!$store.getters.theme" src="../assets/arrow-left-dark.svg" />
-      <img v-else src="../assets/arrow-left-light.svg" />
-      Back
-    </button>
+      <button
+        @click="close"
+        :class="{
+          darkModeBorder: $store.getters.theme,
+          lightModeBorder: !$store.getters.theme,
+        }"
+      >
+        <img v-if="!$store.getters.theme" src="../assets/arrow-left-dark.svg" />
+        <img v-else src="../assets/arrow-left-light.svg" />
+        Back
+      </button>
+      <h3>
+        {{ countrie.name ? countrie.name : "none" }}
+      </h3>
+    </div>
     <div>
-      <img :src="countrie.flag" :alt="`flag-${countrie.name}`" />
-      <div class="desc">
+      <img ref="img" :src="countrie.flag" :alt="`flag-${countrie.name}`" />
+      <div class="desc" ref="description">
         <div>
           <ul>
             <li><span>Native Name :</span> {{ countrie.nativeName }}</li>
@@ -74,10 +79,22 @@
           style="justify-content: flex-end; flex-direction: column;"
           v-if="countrie.borders.length > 0"
         >
-          <div style="display: flex; justify-content: center; width: 100%">
-            Border countries :
+          <div
+            style="display: flex; justify-content: center; width: 100%;"
+            class="label"
+          >
+            <strong> Border countries :</strong>
           </div>
-          <div style="display:flex; justify-content: center; flex-direction: row;width: 100%; margin-top: 5px; flex-wrap: wrap;">
+          <div
+            style="
+              display: flex;
+              justify-content: center;
+              flex-direction: row;
+              width: 100%;
+              margin-top: 5px;
+              flex-wrap: wrap;
+            "
+          >
             <template v-for="(border, i) in countrie.borders">
               <BorderCountrieCard :item="border" :key="i" />
             </template>
@@ -86,6 +103,7 @@
       </div>
     </div>
     <div
+      ref="map"
       class="mapView lightModeBackground"
       style="background-color: transparent;"
     >
@@ -113,6 +131,16 @@ export default {
       zoomRatio: Number,
     };
   },
+  mounted() {
+    this.$refs.map.style.marginTop = `${
+      this.$refs.img.clientHeight - this.$refs.description.clientHeight
+    }px`;
+  },
+  updated() {
+    this.$refs.map.style.marginTop = `${
+      this.$refs.img.clientHeight - this.$refs.description.clientHeight
+    }px`;
+  },
   watch: {
     open: {
       immediate: true,
@@ -120,7 +148,6 @@ export default {
         if (val) {
           document.querySelector("body").style.overflowY = "hidden";
           this.zoomRatio = this.initRatioZoom(this.countrie.area);
-          console.log(this.zoomRatio);
         } else document.querySelector("body").style.overflowY = "visible";
       },
     },
@@ -149,7 +176,8 @@ export default {
 @import "../scss/variable.scss";
 .mapView {
   margin: 10px;
-  justify-self: center;
+  justify-content: flex-end;
+  display: flex;
   width: 100%;
   flex-grow: 1;
 }
@@ -172,6 +200,7 @@ button {
   margin: auto;
   border-radius: 5px;
   outline: none;
+  flex-grow: 0;
   &:hover {
     cursor: pointer;
   }
@@ -214,6 +243,7 @@ h3 {
   font-size: 34px;
   margin: 10px 0;
   box-shadow: $boxShadow;
+  flex-grow: 1;
 }
 .container {
   overflow: hidden;
@@ -276,24 +306,29 @@ h3 {
   }
 }
 @media only screen and (max-width: 1000px) {
-  .desc *{
-    font-size: 10px;
+  .desc * {
+    font-size: 12px;
   }
 }
 @media only screen and (max-width: 600px) {
+  .bordersContainer .label {
+    margin-top: 12px;
+  }
+  .action {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+  }
   button {
     width: 40px;
-    padding: 10px 0px;
+    padding: 5px 0px;
     margin-bottom: 5px;
     font-size: 9px;
     align-items: center;
     > img {
-    height: 10px;
-    width: 10px;
-  }
-  }
-  .bordersContainer {
-    font-size: 9px;
+      height: 10px;
+      width: 10px;
+    }
   }
   .container {
     .desc {
@@ -307,7 +342,11 @@ h3 {
       justify-content: center;
       padding: 0 5px;
       > img {
-        width: 30%;
+        top: 0px;
+        position: absolute;
+        opacity: 0.2;
+        z-index: -1;
+        width: 100%;
       }
     }
   }

@@ -40,7 +40,6 @@ export default {
   },
   methods: {
     initMap() {
-      console.log(this.zoomRatio);
       this.pos.x = this.latitute.x;
       this.pos.y = this.latitute.y;
       this.source = new OSM();
