@@ -79,7 +79,7 @@ export default {
         setTimeout(() => {
           this.loading = true;
           this.loadCard = true;
-        }, 1000);
+        }, 2000);
       });
   },
   data() {
