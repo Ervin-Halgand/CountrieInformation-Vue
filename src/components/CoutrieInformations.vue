@@ -178,11 +178,11 @@ export default {
   margin: 10px;
   justify-content: flex-end;
   display: flex;
-  width: 100%;
   flex-grow: 1;
 }
 
 .bordersContainer {
+  margin-top: 20px;
   flex-direction: row;
   flex-grow: 1;
   font-size: 14px;
@@ -220,7 +220,7 @@ ul {
   }
 }
 ul li {
-  padding: 2px;
+  padding: 10px;
 }
 img {
   width: 700px;
