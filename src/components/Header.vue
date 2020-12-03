@@ -1,5 +1,6 @@
 <template>
-  <header class="header element">
+  <header class="header element" :class="{
+    elevation: scrollPosition > 10 }">
     <h1>{{ title }}</h1>
     <ButtonImage
       title="Dark Mode"
@@ -17,12 +18,31 @@ export default {
   props: {
     title: String,
   },
+  data() {
+    return {
+      scrollPosition: Number,
+    };
+  },
+  methods: {
+    updateScroll() {
+      this.scrollPosition = window.scrollY;
+      console.log(this.scrollPosition);
+    },
+  },
+  mounted() {
+    window.addEventListener("scroll", this.updateScroll);
+  },
+  destroy() {
+    window.removeEventListener("scroll", this.updateScroll);
+  },
 };
 </script>
 
 <style lang="scss">
 @import "../scss/variable.scss";
-
+.elevation {
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+}
 .header {
   position: -webkit-sticky; /* Safari */
   position: sticky;
@@ -33,7 +53,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   padding: 20px 50px;
-  transition: $transition;
+  transition: $transition, box-shadow 300ms ease;
   * {
     transition: $transition;
   }

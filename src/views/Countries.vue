@@ -245,15 +245,13 @@ export default {
 .card__handler {
   flex-wrap: wrap;
   display: flex;
+  justify-content: flex-start;
+  width: 100%;
 }
-.card__handler {
-    justify-content: flex-start;
-    width: 100%;
-  }
-  .card__handler > div {
-    margin-right: 10px;
-    margin-bottom: 40px;
-  }
+.card__handler > div {
+  margin-right: 10px;
+  margin-bottom: 40px;
+}
 
 @media screen and (max-width: 900px) {
   .card__handler {

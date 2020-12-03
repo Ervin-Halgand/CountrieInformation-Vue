@@ -164,6 +164,7 @@ export default {
 
 .modal {
   transition: background-color 1s ease, color 1s ease;
+  z-index: 100;
 }
 
 .mapView {

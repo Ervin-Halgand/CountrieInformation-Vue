@@ -49,7 +49,7 @@ export default {
   align-items: flex-start;
   padding: 10px 20px;
   padding-bottom: 30px;
-  transition: background-color 1s ease, color 1s ease;
+  transition: $transition;
   height: 150px;
   h6 {
     font-size: 20px;
