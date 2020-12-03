@@ -1,11 +1,7 @@
 <template>
   <select
     v-model="selected"
-    class="selecte"
-    :class="{
-      darkModeElements: $store.getters.theme,
-      lightModeElements: !$store.getters.theme,
-    }"
+    class="selecte element"
     @change="$emit('selectevalue', selected)"
   >
     <option value="">Filter By Region</option>
@@ -27,6 +23,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../scss/variable.scss";
 .selecte {
   box-shadow: 0px 0px 51px -20px rgba(0, 0, 0, 0.75);
   border-radius: 5px;
@@ -35,5 +32,6 @@ export default {
   font-size: 1em;
   border: none;
   outline: none;
+  transition: var(--transition);
 }
 </style>

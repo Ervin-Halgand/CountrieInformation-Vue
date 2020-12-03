@@ -1,33 +1,27 @@
 <template>
   <div
-    class="container"
+    class="container background modal"
     :class="{
       openInformation: open,
       closeInformation: closeInfo,
-      darkModeBackground: $store.getters.theme,
-      lightModeBackground: !$store.getters.theme,
     }"
   >
     <div
       class="action"
       style="flex-direction: row; justify-content: flex-start;"
     >
-      <button
+      <ButtonImage
+        title="Back"
         @click="close"
-        :class="{
-          darkModeBorder: $store.getters.theme,
-          lightModeBorder: !$store.getters.theme,
-        }"
-      >
-        <img v-if="!$store.getters.theme" src="../assets/arrow-left-dark.svg" />
-        <img v-else src="../assets/arrow-left-light.svg" />
-        Back
-      </button>
+        :imageUrl="
+          !$store.getters.theme ? 'arrow-left-dark.svg' : 'arrow-left-light.svg'
+        "
+      />
       <h3>
         {{ countrie.name ? countrie.name : "none" }}
       </h3>
     </div>
-    <div>
+    <div class="countrie__information">
       <img ref="img" :src="countrie.flag" :alt="`flag-${countrie.name}`" />
       <div class="desc" ref="description">
         <div>
@@ -102,11 +96,7 @@
         </div>
       </div>
     </div>
-    <div
-      ref="map"
-      class="mapView lightModeBackground"
-      style="background-color: transparent;"
-    >
+    <div ref="map" class="mapView lightModeBackground">
       <MapView
         :latitute="{ x: countrie.latlng[0], y: countrie.latlng[1] }"
         :zoomRatio="zoomRatio"
@@ -118,28 +108,21 @@
 <script>
 import MapView from "@/components/map/MapView";
 import BorderCountrieCard from "@/components/BorderCountrieCard";
+import ButtonImage from "@/components/ButtonImage";
+
 export default {
   name: "CountrieInformations",
   props: ["open", "countrie"],
   components: {
     MapView,
     BorderCountrieCard,
+    ButtonImage,
   },
   data() {
     return {
       closeInfo: false,
       zoomRatio: Number,
     };
-  },
-  mounted() {
-    this.$refs.map.style.marginTop = `${
-      this.$refs.img.clientHeight - this.$refs.description.clientHeight
-    }px`;
-  },
-  updated() {
-    this.$refs.map.style.marginTop = `${
-      this.$refs.img.clientHeight - this.$refs.description.clientHeight
-    }px`;
   },
   watch: {
     open: {
@@ -174,11 +157,21 @@ export default {
 
 <style lang="scss" scoped>
 @import "../scss/variable.scss";
+
+.countrie__information {
+  flex: 1;
+}
+
+.modal {
+  transition: background-color 1s ease, color 1s ease;
+}
+
 .mapView {
   margin: 10px;
   justify-content: flex-end;
   display: flex;
   flex-grow: 1;
+  background-color: transparent;
 }
 
 .bordersContainer {
@@ -193,7 +186,7 @@ export default {
 button {
   width: 80px;
   padding: 10px 0px;
-  box-shadow: $boxShadow;
+  box-shadow: var(--boxShadow);
   display: flex;
   margin-right: auto;
   justify-content: center;
@@ -225,7 +218,7 @@ ul li {
 img {
   width: 700px;
   object-fit: scale-down;
-  box-shadow: $boxShadow;
+  box-shadow: var(--boxShadow);
 }
 .desc {
   display: flex;
@@ -242,7 +235,6 @@ h3 {
   justify-content: center;
   font-size: 34px;
   margin: 10px 0;
-  box-shadow: $boxShadow;
   flex-grow: 1;
 }
 .container {
@@ -256,6 +248,9 @@ h3 {
   padding: 0px;
   display: flex;
   flex-direction: column;
+  * {
+    transition: $transition;
+  }
   > div {
     align-items: center;
     display: flex;
@@ -270,20 +265,11 @@ h3 {
 }
 
 .openInformation {
-  transform: scale(0);
+  transform: translateY(1000px);
   animation: openModalAnim 1s ease forwards;
   @keyframes openModalAnim {
-    0% {
-      transform: scale(0);
-    }
-    10% {
-      transform: scale(0.1, 0);
-    }
-    50% {
-      transform: scale(0.1, 1);
-    }
-    100% {
-      transform: scale(1, 1);
+    to {
+      transform: translateY(0);
     }
   }
 }
@@ -291,17 +277,8 @@ h3 {
 .closeInformation {
   animation: closeModalAnim 1s ease reverse forwards;
   @keyframes closeModalAnim {
-    0% {
-      transform: scale(0);
-    }
-    10% {
-      transform: scale(0.1, 0);
-    }
-    50% {
-      transform: scale(0.1, 1);
-    }
-    100% {
-      transform: scale(1, 1);
+    to {
+      transform: translateY(0);
     }
   }
 }
@@ -320,16 +297,9 @@ h3 {
     margin-top: 5px;
   }
   button {
-    width: 40px;
-    padding: 5px 0px;
-    margin-bottom: 5px;
-    font-size: 9px;
-    align-items: center;
-    > img {
-      height: 10px;
-      width: 10px;
-    }
+    transform: scale(0.7);
   }
+
   .container {
     .desc {
       width: 100%;
@@ -357,7 +327,7 @@ h3 {
   }
   h3 {
     margin: 4px;
-    font-size: 14px;
+    font-size: 20px;
     align-self: center;
   }
 }

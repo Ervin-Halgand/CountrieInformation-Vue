@@ -1,10 +1,6 @@
 <template>
   <div
-    :class="{
-      darkModeElements: $store.getters.theme,
-      lightModeElements: !$store.getters.theme,
-    }"
-  >
+  class="background">
     {{ item }}
   </div>
 </template>

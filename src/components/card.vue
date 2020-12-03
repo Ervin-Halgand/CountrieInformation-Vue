@@ -1,22 +1,7 @@
 <template>
-  <div
-    class="card"
-    :class="{
-      animation__pop: reloadCard,
-      darkModeElements: $store.getters.theme,
-      lightModeElements: !$store.getters.theme,
-    }"
-    @click="$emit('click', info)"
-  >
+  <div class="card background" @click="$emit('click', info)">
     <img ref="img" :alt="`flag-${info.name}`" :src="info.flag" />
-    <div
-      v-if="info.flag"
-      class="description"
-      :class="{
-        darkModeElements: $store.getters.theme,
-        lightModeElements: !$store.getters.theme,
-      }"
-    >
+    <div v-if="info.flag" class="description element">
       <h6>
         {{ info.name }}
       </h6>
@@ -38,16 +23,6 @@ export default {
   props: {
     info: Object,
     reload: String,
-  },
-  mounted() {
-    this.$watch(
-      () => {
-        return this.$refs.img;
-      },
-      (val) => {
-        alert("App $watch $refs.complete: " + val);
-      }
-    );
   },
   data() {
     return {
@@ -74,6 +49,8 @@ export default {
   align-items: flex-start;
   padding: 10px 20px;
   padding-bottom: 30px;
+  transition: background-color 1s ease, color 1s ease;
+  height: 150px;
   h6 {
     font-size: 20px;
     font-weight: 800;
@@ -91,24 +68,15 @@ export default {
   }
 }
 
-.animation__pop {
-  animation: pop 1s forwards;
-  @keyframes pop {
-    to {
-      transform: scale(1, 1);
-    }
-  }
-}
 .card {
-  transform: scale(0, 0);
   display: flex;
   flex-direction: column;
-  max-width: 350px;
+  max-width: 340px;
   min-width: 200px;
   min-height: 200px;
-  margin-bottom: 60px;
   border-radius: 5px;
-  box-shadow: $boxShadow;
+  box-shadow: var(--boxShadow);
+  transition: transform 500ms ease;
   img {
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
@@ -118,6 +86,7 @@ export default {
   }
   &:hover {
     cursor: pointer;
+    transform: scale(1.015);
   }
 }
 </style>

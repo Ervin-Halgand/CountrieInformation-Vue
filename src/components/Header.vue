@@ -1,29 +1,19 @@
 <template>
-  <header
-    class="header"
-    :class="{
-      darkModeElements: $store.getters.theme,
-      lightModeElements: !$store.getters.theme,
-    }"
-  >
+  <header class="header element">
     <h1>{{ title }}</h1>
-    <button
+    <ButtonImage
+      title="Dark Mode"
       @click="$store.dispatch('toggleTheme')"
-      :class="{
-        darkModeBorder: $store.getters.theme,
-        lightModeBorder: !$store.getters.theme,
-      }"
-    >
-      <img v-if="!$store.getters.theme" src="../assets/moon-outline.svg" />
-      <img v-else src="../assets/moon.svg" />
-      Dark Mode
-    </button>
+      :imageUrl="!$store.getters.theme ? 'moon-outline.svg' : 'moon.svg'"
+    />
   </header>
 </template>
 
 <script>
+import ButtonImage from "@/components/ButtonImage";
 export default {
   name: "Header",
+  components: { ButtonImage },
   props: {
     title: String,
   },
@@ -43,40 +33,10 @@ export default {
   align-items: center;
   justify-content: space-between;
   padding: 20px 50px;
+  transition: $transition;
   * {
-    background-color: transparent;
+    transition: $transition;
   }
-}
-
-.darkModeBorder {
-  border: 1px solid $white;
-  &:hover {
-    filter: drop-shadow(0px 0px 10px $white);
-  }
-}
-
-.lightModeBorder {
-  border: 1px solid $darkGray;
-  &:hover {
-    filter: drop-shadow(0px 0px 10px black);
-  }
-}
-
-.header button {
-  padding: 10px 10px;
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-  border-radius: 20px;
-  outline: none;
-  font-weight: 600;
-  &:hover {
-    cursor: pointer;
-  }
-}
-.header button img {
-  margin-right: 10px;
-  height: 17px;
 }
 
 .endLightMode {
@@ -97,6 +57,9 @@ export default {
       font-size: 14px;
     }
   }
+  button {
+    transform: scale(0.7);
+  }
 }
 
 @media only screen and (max-width: 300px) {
@@ -105,6 +68,9 @@ export default {
     * {
       font-size: 10px;
     }
+  }
+  button {
+    transform: scale(0.5);
   }
 }
 </style>

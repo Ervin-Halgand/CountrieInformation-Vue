@@ -24,14 +24,14 @@
 .cardLoader {
   border-radius: 5px;
   margin-bottom: 60px;
-  box-shadow: $boxShadow;
+  box-shadow: var(--boxShadow);
   .descLoader {
     padding: 10px 20px;
     padding-bottom: 30px;
   }
   overflow: hidden;
   background-color: #fff;
-  width: 300px;
+  width: 340px;
   height: 320px;
   background-color: white;
   .img {

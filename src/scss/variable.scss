@@ -7,6 +7,13 @@ $veryLightGray: hsl(0, 0%, 98%);
 $animationTime: 1s;
 $animationCurve: ease-in-out;
 $boxShadow: 0px 0px 51px -20px rgba(0, 0, 0, 0.75);
+$elementColor: $veryLightGray;
+$transition: background-color 1s ease, color 1s ease;
+
+[data-theme="dark"] {
+  $elementColor: $darkBlue;
+}
+
 :export {
   darkBlue: $darkBlue;
   veryDarkBlue: $veryDarkBlue;
@@ -17,4 +24,6 @@ $boxShadow: 0px 0px 51px -20px rgba(0, 0, 0, 0.75);
   animationTime: $animationTime;
   animationCurve: $animationCurve;
   boxShadow: $boxShadow;
+  elementColor : $elementColor;
+  transition: $transition
 }

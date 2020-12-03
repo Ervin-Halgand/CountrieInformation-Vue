@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content background">
     <div>
       <div
         class="filter"
@@ -22,11 +22,11 @@
       </div>
 
       <div class="card__handler" v-if="!loading">
-        <template v-for="n in 8">
+        <template v-for="n in 10">
           <CardLoader :key="n" />
         </template>
       </div>
-      <div v-else class="card__handler">
+      <transition-group name="list" class="card__handler" v-else appear>
         <template v-for="(countrieInfo, i) in this.filterCardHandler">
           <Card
             :info="countrieInfo"
@@ -36,7 +36,7 @@
             @click="countrieclicked"
           />
         </template>
-      </div>
+      </transition-group>
     </div>
     <CoutrieInformations
       v-if="itemCountrieSelected"
@@ -175,16 +175,31 @@ export default {
 <style lang="scss">
 @import "../scss/variable.scss";
 
+.list-enter-active,
+.list-leave,
+.list-leave-to {
+  transform: scale(0);
+}
+
+.list-leave-active {
+  transition: all 500ms ease;
+  transform: scale(0);
+}
+.list-move {
+  transition: transform 1s;
+}
+
 .content {
   padding: 1px 50px;
   position: relative;
+  transition: $transition;
 }
 
 .filterDarkMode > div *,
 .filterLightMode > div * {
-  box-shadow: $boxShadow;
+  box-shadow: var(--boxShadow);
   border: none;
-  transition: background-color $animationTime $animationCurve;
+  transition: background-color 1s ease;
 }
 .filterDarkMode > div * {
   &::placeholder {
@@ -192,7 +207,7 @@ export default {
   }
   * {
     &:focus {
-      box-shadow: $boxShadow;
+      box-shadow: var(--boxShadow);
       background-color: $darkBlue;
     }
     background-color: $darkBlue;
@@ -206,7 +221,7 @@ export default {
   }
   * {
     &:focus {
-      box-shadow: $boxShadow;
+      box-shadow: var(--boxShadow);
       background-color: $white;
     }
     background-color: $white;
@@ -230,16 +245,20 @@ export default {
 .card__handler {
   flex-wrap: wrap;
   display: flex;
-  justify-content: space-between;
 }
-
-@media only screen and (max-width: 600px) {
-  .content {
-    padding: 0px 20px;
+.card__handler {
+    justify-content: flex-start;
+    width: 100%;
   }
-}
+  .card__handler > div {
+    margin-right: 10px;
+    margin-bottom: 40px;
+  }
 
 @media screen and (max-width: 900px) {
+  .card__handler {
+    justify-content: center;
+  }
   .filter div:nth-child(1) {
     width: 100%;
   }
@@ -249,9 +268,11 @@ export default {
   .filter {
     display: block;
   }
-  .card__handler {
-    justify-content: center;
-    width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .content {
+    padding: 0px 20px;
   }
 }
 </style>
