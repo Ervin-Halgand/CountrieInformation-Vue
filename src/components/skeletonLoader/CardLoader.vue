@@ -25,14 +25,14 @@
   border-radius: 5px;
   margin-bottom: 60px;
   box-shadow: var(--boxShadow);
+  width: 100%;
+  min-height: 200px;
   .descLoader {
     padding: 10px 20px;
     padding-bottom: 30px;
   }
   overflow: hidden;
   background-color: #fff;
-  width: 340px;
-  height: 320px;
   background-color: white;
   .img {
       border-radius: 0;

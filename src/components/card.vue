@@ -1,5 +1,5 @@
 <template>
-  <div class="card background" @click="$emit('click', info)">
+  <section class="card background" @click="$emit('click', info)">
     <img ref="img" :alt="`flag-${info.name}`" :src="info.flag" />
     <div v-if="info.flag" class="description element">
       <h6>
@@ -14,7 +14,7 @@
         <li><strong>Capital:</strong> {{ info.capital }}</li>
       </ul>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -69,10 +69,9 @@ export default {
 }
 
 .card {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  max-width: 340px;
-  min-width: 200px;
   min-height: 200px;
   border-radius: 5px;
   box-shadow: var(--boxShadow);

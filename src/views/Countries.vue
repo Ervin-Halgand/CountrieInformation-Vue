@@ -243,19 +243,24 @@ export default {
 }
 
 .card__handler {
-  flex-wrap: wrap;
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
 }
 .card__handler > div {
   margin-right: 10px;
   margin-bottom: 40px;
 }
 
+
+@media screen and (max-width: 1250px) {
+  .card__handler {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 @media screen and (max-width: 900px) {
   .card__handler {
-    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
   }
   .filter div:nth-child(1) {
     width: 100%;
@@ -269,6 +274,9 @@ export default {
 }
 
 @media only screen and (max-width: 600px) {
+  .card__handler {
+    grid-template-columns: repeat(1, 1fr);
+  }
   .content {
     padding: 0px 20px;
   }
