@@ -218,7 +218,6 @@ ul li {
 img {
   width: 700px;
   object-fit: scale-down;
-  box-shadow: var(--boxShadow);
 }
 .desc {
   display: flex;
@@ -309,7 +308,7 @@ h3 {
       align-items: center;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: start;
       padding: 0 5px;
       > img {
         top: 0px;
@@ -317,6 +316,8 @@ h3 {
         opacity: 0.2;
         z-index: -1;
         width: 100%;
+        height: 261px;
+        object-fit: cover;
       }
     }
   }
