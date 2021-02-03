@@ -45,6 +45,7 @@ export default {
 @import "../scss/variable.scss";
 .description {
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: flex-start;
   padding: 10px 20px;
@@ -72,7 +73,6 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
-  min-height: 200px;
   border-radius: 5px;
   box-shadow: var(--boxShadow);
   transition: transform 500ms ease;
@@ -82,10 +82,11 @@ export default {
     width: 100%;
     height: 200px;
     object-fit: cover;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
   }
   &:hover {
     cursor: pointer;
-    transform: scale(1.015);
+    transform: translateY(-.35em) scale(1.01);
   }
 }
 </style>

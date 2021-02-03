@@ -32,7 +32,7 @@ export default {
   --veryLightGray: hsl(0, 0%, 98%);
   --animationTime: 1s;
   --animationCurve: ease-in-out;
-  --boxShadow: 0px 0px 51px -20px rgba(0, 0, 0, 0.75);
+  --boxShadow: 0 2px 4px rgba(0, 0, 0, 0.16), 0 2px 4px rgba(0, 0, 0, 0.23);
 
   --element-color: var(--white);
   --text-color: black;
@@ -44,7 +44,6 @@ export default {
   --element-color: var(--darkBlue);
   --text-color: var(--white);
   --container-color: var(--veryDarkBlue);
-  --boxShadow: none;
 }
 
 .darkModeElements {

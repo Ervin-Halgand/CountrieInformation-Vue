@@ -45,14 +45,14 @@ button {
 .darkModeBorder {
   border: 1px solid $white;
   &:hover {
-    filter: drop-shadow(0px 0px 10px $white);
+    /* filter: drop-shadow(0px 0px 10px $white); */
   }
 }
 
 .lightModeBorder {
   border: 1px solid $darkGray;
   &:hover {
-    filter: drop-shadow(0px 0px 10px black);
+    /* filter: drop-shadow(0px 0px 10px black); */
   }
 }
 </style>

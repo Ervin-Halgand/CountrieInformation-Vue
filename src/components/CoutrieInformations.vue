@@ -187,7 +187,6 @@ export default {
 button {
   width: 80px;
   padding: 10px 0px;
-  box-shadow: var(--boxShadow);
   display: flex;
   margin-right: auto;
   justify-content: center;

@@ -25,7 +25,6 @@ export default {
 <style lang="scss" scoped>
 @import "../scss/variable.scss";
 .selecte {
-  box-shadow: 0px 0px 51px -20px rgba(0, 0, 0, 0.75);
   border-radius: 5px;
   padding: 20px 15px;
   padding-right: 30px;

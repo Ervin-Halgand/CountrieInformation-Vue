@@ -20,6 +20,7 @@
   position: relative;
   background-color: #aea9a9;
   border-radius: 10px;
+  overflow: hidden;
 }
 .cardLoader {
   border-radius: 5px;
@@ -32,8 +33,7 @@
     padding-bottom: 30px;
   }
   overflow: hidden;
-  background-color: #fff;
-  background-color: white;
+  background-color: var(--element-color);
   .img {
       border-radius: 0;
     border-top-right-radius: 5px;

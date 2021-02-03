@@ -1,6 +1,10 @@
 <template>
-  <header class="header element" :class="{
-    elevation: scrollPosition > 10 }">
+  <header
+    class="header element"
+    :class="{
+      elevation: scrollPosition > 10,
+    }"
+  >
     <h1>{{ title }}</h1>
     <ButtonImage
       title="Dark Mode"
@@ -26,7 +30,6 @@ export default {
   methods: {
     updateScroll() {
       this.scrollPosition = window.scrollY;
-      console.log(this.scrollPosition);
     },
   },
   mounted() {
@@ -40,8 +43,39 @@ export default {
 
 <style lang="scss">
 @import "../scss/variable.scss";
+button {
+  position: relative;
+  overflow: hidden;
+  &:hover::after {
+    transform: translate3d(0, 0, 0);
+  }
+  &::after {
+    transition: transform 1s ease;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translate3d(-120px, 0, 0);
+    background: #cc95c0; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to bottom,
+      #7aa1d2,
+      #dbd4b4,
+      #cc95c0
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to bottom,
+      #7aa1d2,
+      #dbd4b4,
+      #cc95c0
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    z-index: -1;
+    left: 0;
+  }
+}
 .elevation {
-  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
 }
 .header {
   position: -webkit-sticky; /* Safari */
