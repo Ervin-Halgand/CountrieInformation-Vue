@@ -1,17 +1,17 @@
 <template>
   <section class="card background" @click="$emit('click', info)">
-    <img ref="img" :alt="`flag-${info.name}`" :src="info.flag" />
+    <img ref="img" :alt="`flag-${info.name}`" width="380" height="200" :src="info.flag" />
     <div v-if="info.flag" class="description element">
-      <h6>
+      <h4>
         {{ info.name }}
-      </h6>
+      </h4>
       <ul>
         <li>
-          <strong>Population:</strong>
+          <h6 class="heading">Population:</h6>
           {{ info.population.toLocaleString().replaceAll(",", " ") }}
         </li>
-        <li><strong>Region:</strong> {{ info.region }}</li>
-        <li><strong>Capital:</strong> {{ info.capital }}</li>
+        <li><h6 class="heading">Region:</h6> {{ info.region }}</li>
+        <li><h6 class="heading">Capital:</h6> {{ info.capital }}</li>
       </ul>
     </div>
   </section>
@@ -43,6 +43,11 @@ export default {
 
 <style lang="scss">
 @import "../scss/variable.scss";
+
+.heading {
+  display: inline-block;
+  font-weight: bold;
+}
 .description {
   display: flex;
   flex: 1;
@@ -52,10 +57,14 @@ export default {
   padding-bottom: 30px;
   transition: $transition;
   height: 150px;
-  h6 {
+  h4 {
     font-size: 20px;
     font-weight: 800;
     margin-bottom: 10px;
+  }
+  h6 {
+    font-size: 14px;
+    font-weight: 800;
   }
   ul {
     font-size: 14px;

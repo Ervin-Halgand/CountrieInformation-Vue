@@ -6,7 +6,7 @@
       lightModeBorder: !$store.getters.theme,
     }"
   >
-    <img :src="require(`@/assets/${imageUrl}`)" />
+    <img height="17" width="17" :src="require(`@/assets/${imageUrl}`)" />
     {{ title }}
   </button>
 </template>
