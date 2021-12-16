@@ -68,7 +68,7 @@ export default {
   mounted() {
     this.loading = false;
     axios
-      .get("https://restcountries.eu/rest/v2/all")
+      .get("https://restcountries.com/v2/all")
       .then((response) => {
         this.countriesInformations = response.data;
         this.countriesName = response.data.map((item) => {
